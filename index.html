@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -229,18 +229,18 @@
   </head>
   <body>
     <div class="container">
-      <h1>Documentation API - Test Widget</h1>
+      <h1>API Documentation - RC Widget</h1>
 
-      <h2>Vue d'ensemble</h2>
+      <h2>Overview</h2>
       <p>
-        Cette API permet de récupérer les données d'un widget de test pour les
-        marchands, incluant les informations du partenaire et du client.
+        This API allows you to retrieve test widget data for merchants, including
+        partner and client information.
       </p>
 
       <h2>Endpoint</h2>
 
       <h3>GET Merchant Test Widget</h3>
-      <p>Récupère les données du widget de test pour un marchand.</p>
+      <p>Retrieves test widget data for a merchant.</p>
 
       <p>
         <strong>URL:</strong>
@@ -249,24 +249,23 @@
         >
       </p>
 
-      <p><strong>Méthode:</strong> <span class="method">POST</span></p>
+      <p><strong>Method:</strong> <span class="method">POST</span></p>
 
       <p><strong>Content-Type:</strong> <code>application/json</code></p>
 
-      <h2>Authentification</h2>
+      <h2>Authentication</h2>
       <p>
-        L'API utilise un système d'authentification basé sur des headers
-        personnalisés.
+        The API uses an authentication system based on custom headers.
       </p>
 
-      <h3>Headers requis</h3>
+      <h3>Required headers</h3>
 
       <table>
         <thead>
           <tr>
             <th>Header</th>
             <th>Type</th>
-            <th>Requis</th>
+            <th>Required</th>
             <th>Description</th>
           </tr>
         </thead>
@@ -275,26 +274,26 @@
             <td><code>x-transaction-key</code></td>
             <td>string</td>
             <td><span class="required">✅</span></td>
-            <td>Clé de transaction unique</td>
+            <td>Unique transaction key</td>
           </tr>
           <tr>
             <td><code>x-transaction-password</code></td>
             <td>string</td>
             <td><span class="required">✅</span></td>
-            <td>Mot de passe de transaction</td>
+            <td>Transaction password</td>
           </tr>
           <tr>
             <td><code>x-user-key</code></td>
             <td>string</td>
             <td><span class="required">✅</span></td>
-            <td>Clé utilisateur</td>
+            <td>User key</td>
           </tr>
         </tbody>
       </table>
 
-      <h3>Exemple de headers</h3>
+      <h3>Headers example</h3>
       <div class="code-container">
-        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
         <pre><code>headers: {
     "x-transaction-key": "186339491a3fc16e",
     "x-transaction-password": "03206b53ebf67688",
@@ -302,20 +301,20 @@
 }</code></pre>
       </div>
 
-      <h2>Requête</h2>
+      <h2>Request</h2>
 
-      <h3>Corps de la requête</h3>
+      <h3>Request body</h3>
       <div class="code-container">
-        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
         <pre><code>{}</code></pre>
       </div>
       <div class="note">
-        <strong>Note:</strong> Le corps de la requête est vide pour cet endpoint
+        <strong>Note:</strong> The request body is empty for this endpoint
       </div>
 
-      <h3>Exemple de requête complète</h3>
+      <h3>Complete request example</h3>
       <div class="code-container">
-        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
         <pre><code>axios.post('https://test-site.rechcompt.com/api/v1/merchants/test-widget', {}, {
     headers: {
         "x-transaction-key": "186339491a3fc16e",
@@ -325,14 +324,14 @@
 })</code></pre>
       </div>
 
-      <h2>Réponse</h2>
+      <h2>Response</h2>
 
-      <h3>Statut de succès</h3>
+      <h3>Success status</h3>
       <div class="alert alert-success"><strong>Code:</strong> 200 OK</div>
 
-      <h3>Structure de la réponse</h3>
+      <h3>Response structure</h3>
       <div class="code-container">
-        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
         <pre><code>{
     "client": {
         "firstname": "string",
@@ -349,13 +348,13 @@
 }</code></pre>
       </div>
 
-      <h3>Description des champs</h3>
+      <h3>Field descriptions</h3>
 
-      <h4>Objet <code>client</code></h4>
+      <h4><code>client</code> object</h4>
       <table>
         <thead>
           <tr>
-            <th>Champ</th>
+            <th>Field</th>
             <th>Type</th>
             <th>Description</th>
           </tr>
@@ -364,31 +363,31 @@
           <tr>
             <td><code>firstname</code></td>
             <td>string</td>
-            <td>Prénom du client</td>
+            <td>Client's first name</td>
           </tr>
           <tr>
             <td><code>lastname</code></td>
             <td>string</td>
-            <td>Nom de famille du client</td>
+            <td>Client's last name</td>
           </tr>
           <tr>
             <td><code>status</code></td>
             <td>number</td>
-            <td>Statut du client (2 = actif)</td>
+            <td>Client status (2 = active)</td>
           </tr>
           <tr>
             <td><code>balance</code></td>
             <td>number</td>
-            <td>Solde du compte client</td>
+            <td>Client account balance</td>
           </tr>
         </tbody>
       </table>
 
-      <h4>Objet <code>partner</code></h4>
+      <h4><code>partner</code> object</h4>
       <table>
         <thead>
           <tr>
-            <th>Champ</th>
+            <th>Field</th>
             <th>Type</th>
             <th>Description</th>
           </tr>
@@ -397,57 +396,57 @@
           <tr>
             <td><code>name</code></td>
             <td>string</td>
-            <td>Nom du partenaire</td>
+            <td>Partner name</td>
           </tr>
           <tr>
             <td><code>partner_status</code></td>
             <td>number</td>
-            <td>Statut du partenaire (2 = actif)</td>
+            <td>Partner status (2 = active)</td>
           </tr>
           <tr>
             <td><code>country_nice_name</code></td>
             <td>string</td>
-            <td>Nom du pays</td>
+            <td>Country name</td>
           </tr>
           <tr>
             <td><code>balance</code></td>
             <td>number</td>
-            <td>Solde du compte partenaire</td>
+            <td>Partner account balance</td>
           </tr>
         </tbody>
       </table>
 
-      <h3>Exemple de réponse</h3>
+      <h3>Response example</h3>
       <div class="code-container">
-        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
         <pre><code>{
     "client": {
-        "firstname": "Jean",
-        "lastname": "Dupont",
+        "firstname": "John",
+        "lastname": "Doe",
         "status": 2,
         "balance": 50000
     },
     "partner": {
-        "name": "Partenaire Test",
+        "name": "Test Partner",
         "partner_status": 2,
-        "country_nice_name": "Bénin",
+        "country_nice_name": "Benin",
         "balance": 125000
     }
 }</code></pre>
       </div>
 
-      <h2>Fonctionnalité RcTransaction</h2>
+      <h2>RcTransaction functionality</h2>
 
       <p>
-        Le code utilise également une fonction <code>RcTransaction</code> pour
-        gérer les transactions.
+        The code also uses an <code>RcTransaction</code> function to handle
+        transactions.
       </p>
 
-      <h3>Paramètres RcTransaction</h3>
+      <h3>RcTransaction parameters</h3>
       <table>
         <thead>
           <tr>
-            <th>Paramètre</th>
+            <th>Parameter</th>
             <th>Type</th>
             <th>Description</th>
           </tr>
@@ -456,72 +455,71 @@
           <tr>
             <td><code>transactionKey</code></td>
             <td>string</td>
-            <td>Clé de transaction</td>
+            <td>Transaction key</td>
           </tr>
           <tr>
             <td><code>transactionPassword</code></td>
             <td>string</td>
-            <td>Mot de passe de transaction</td>
+            <td>Transaction password</td>
           </tr>
           <tr>
             <td><code>action</code></td>
             <td>string</td>
-            <td>Action à effectuer ("+" pour dépôt, "-" pour retrait)</td>
+            <td>Action to perform ("+" for deposit, "-" for withdrawal)</td>
           </tr>
           <tr>
             <td><code>webhook</code></td>
             <td>string</td>
-            <td>URL de callback</td>
+            <td>Callback URL</td>
           </tr>
           <tr>
             <td><code>ptner_transaction_id</code></td>
             <td>number</td>
-            <td>ID de transaction partenaire (généré aléatoirement)</td>
+            <td>Partner transaction ID (randomly generated)</td>
           </tr>
         </tbody>
       </table>
 
-      <h3>Exemple d'utilisation</h3>
+      <h3>Usage example</h3>
       <div class="code-container">
-        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
         <pre><code>RcTransaction({
     transactionKey: "186339491a3fc16e",
     transactionPassword: "03206b53ebf67688",
-    action: "+", // ou "-"
+    action: "+", // or "-"
     webhook: "https://rechcompt.com",
     ptner_transaction_id: Math.floor(Math.random() * 1000000000)
 })</code></pre>
       </div>
 
-      <h2>Gestion des erreurs</h2>
+      <h2>Error handling</h2>
 
-      <p>Le code vérifie le statut de la réponse :</p>
+      <p>The code checks the response status:</p>
       <div class="code-container">
-        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
         <pre><code>if(response?.status === 200) {
-    // Traitement des données
+    // Data processing
 }</code></pre>
       </div>
 
       <div class="alert alert-warning">
-        Pour une gestion d'erreurs complète, il est recommandé d'ajouter un bloc
-        <code>.catch()</code> à la promesse axios.
+        For complete error handling, it is recommended to add a
+        <code>.catch()</code> block to the axios promise.
       </div>
 
-      <h2>Notes importantes</h2>
+      <h2>Important notes</h2>
 
       <ul>
         <li>
-          Les clés d'authentification sont en dur dans le code - en production,
-          elles devraient être sécurisées
+          Authentication keys are hardcoded in the code - in production, they
+          should be secured
         </li>
         <li>
-          L'affichage des soldes utilise le format "montant + ' F'" (Franc CFA)
+          Balance display uses the format "amount + ' F'" (CFA Franc)
         </li>
-        <li>Les statuts actifs correspondent à la valeur <code>2</code></li>
+        <li>Active statuses correspond to the value <code>2</code></li>
         <li>
-          Le code génère des IDs de transaction aléatoirement pour les
-          opérations
+          The code generates transaction IDs randomly for operations
         </li>
       </ul>
     </div>
@@ -534,7 +532,7 @@
 
         navigator.clipboard.writeText(code).then(() => {
           const originalText = button.textContent;
-          button.textContent = "Copié!";
+          button.textContent = "Copied!";
           button.style.background = "#1f883d";
           button.style.color = "white";
 
