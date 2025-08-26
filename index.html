@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Documentation - Test Widget</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+          Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        color: #24292f;
+        background-color: #ffffff;
+        font-size: 16px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #24292f;
+        margin-bottom: 16px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #d0d7de;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #24292f;
+        margin: 24px 0 16px 0;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #d0d7de;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #24292f;
+        margin: 24px 0 16px 0;
+      }
+
+      h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #24292f;
+        margin: 16px 0 8px 0;
+      }
+
+      p {
+        margin-bottom: 16px;
+        color: #656d76;
+      }
+
+      ul {
+        margin: 0 0 16px 0;
+        padding-left: 32px;
+      }
+
+      li {
+        margin-bottom: 4px;
+        color: #656d76;
+      }
+
+      .endpoint {
+        background-color: #0969da;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-family: "SF Mono", Monaco, Inconsolata, "Roboto Mono", monospace;
+        font-size: 14px;
+        margin: 16px 0;
+        display: inline-block;
+      }
+
+      .method {
+        background-color: #1f883d;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 12px;
+        margin-right: 8px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0;
+        border: 1px solid #d0d7de;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      th {
+        background-color: #f6f8fa;
+        padding: 12px;
+        text-align: left;
+        font-weight: 600;
+        border-bottom: 1px solid #d0d7de;
+        color: #24292f;
+      }
+
+      td {
+        padding: 12px;
+        border-bottom: 1px solid #d0d7de;
+        color: #656d76;
+      }
+
+      tbody tr:hover {
+        background-color: #f6f8fa;
+      }
+
+      code {
+        background-color: rgba(175, 184, 193, 0.2);
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-family: "SF Mono", Monaco, Inconsolata, "Roboto Mono", monospace;
+        font-size: 85%;
+        color: #24292f;
+      }
+
+      pre {
+        background-color: #f6f8fa;
+        border: 1px solid #d0d7de;
+        border-radius: 6px;
+        padding: 16px;
+        overflow-x: auto;
+        margin: 16px 0;
+      }
+
+      pre code {
+        background: none;
+        padding: 0;
+        font-size: 14px;
+        color: #24292f;
+      }
+
+      .required {
+        background-color: #1f883d;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .alert {
+        padding: 16px;
+        margin: 16px 0;
+        border: 1px solid transparent;
+        border-radius: 6px;
+      }
+
+      .alert-success {
+        color: #1a7f37;
+        background-color: #dafbe1;
+        border-color: #1f883d;
+      }
+
+      .alert-warning {
+        color: #9a6700;
+        background-color: #fff8c5;
+        border-color: #d1242f;
+      }
+
+      .note {
+        padding: 16px;
+        margin: 16px 0;
+        background-color: #ddf4ff;
+        border: 1px solid #54aeff;
+        border-radius: 6px;
+        color: #0969da;
+      }
+
+      .copy-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #f6f8fa;
+        border: 1px solid #d0d7de;
+        padding: 4px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        color: #656d76;
+      }
+
+      .copy-btn:hover {
+        background: #ffffff;
+      }
+
+      .code-container {
+        position: relative;
+      }
+
+      blockquote {
+        padding: 0 1em;
+        color: #656d76;
+        border-left: 0.25em solid #d0d7de;
+        margin: 0 0 16px 0;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 20px 16px;
+        }
+
+        h1 {
+          font-size: 1.75rem;
+        }
+
+        h2 {
+          font-size: 1.25rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Documentation API - Test Widget</h1>
+
+      <h2>Vue d'ensemble</h2>
+      <p>
+        Cette API permet de récupérer les données d'un widget de test pour les
+        marchands, incluant les informations du partenaire et du client.
+      </p>
+
+      <h2>Endpoint</h2>
+
+      <h3>GET Merchant Test Widget</h3>
+      <p>Récupère les données du widget de test pour un marchand.</p>
+
+      <p>
+        <strong>URL:</strong>
+        <span class="endpoint"
+          >https://test-site.rechcompt.com/api/v1/merchants/test-widget</span
+        >
+      </p>
+
+      <p><strong>Méthode:</strong> <span class="method">POST</span></p>
+
+      <p><strong>Content-Type:</strong> <code>application/json</code></p>
+
+      <h2>Authentification</h2>
+      <p>
+        L'API utilise un système d'authentification basé sur des headers
+        personnalisés.
+      </p>
+
+      <h3>Headers requis</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Header</th>
+            <th>Type</th>
+            <th>Requis</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>x-transaction-key</code></td>
+            <td>string</td>
+            <td><span class="required">✅</span></td>
+            <td>Clé de transaction unique</td>
+          </tr>
+          <tr>
+            <td><code>x-transaction-password</code></td>
+            <td>string</td>
+            <td><span class="required">✅</span></td>
+            <td>Mot de passe de transaction</td>
+          </tr>
+          <tr>
+            <td><code>x-user-key</code></td>
+            <td>string</td>
+            <td><span class="required">✅</span></td>
+            <td>Clé utilisateur</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Exemple de headers</h3>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><code>headers: {
+    "x-transaction-key": "186339491a3fc16e",
+    "x-transaction-password": "03206b53ebf67688",
+    "x-user-key": "409db2794eff1d8c"
+}</code></pre>
+      </div>
+
+      <h2>Requête</h2>
+
+      <h3>Corps de la requête</h3>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><code>{}</code></pre>
+      </div>
+      <div class="note">
+        <strong>Note:</strong> Le corps de la requête est vide pour cet endpoint
+      </div>
+
+      <h3>Exemple de requête complète</h3>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><code>axios.post('https://test-site.rechcompt.com/api/v1/merchants/test-widget', {}, {
+    headers: {
+        "x-transaction-key": "186339491a3fc16e",
+        "x-transaction-password": "03206b53ebf67688",
+        "x-user-key": "409db2794eff1d8c"
+    }
+})</code></pre>
+      </div>
+
+      <h2>Réponse</h2>
+
+      <h3>Statut de succès</h3>
+      <div class="alert alert-success"><strong>Code:</strong> 200 OK</div>
+
+      <h3>Structure de la réponse</h3>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><code>{
+    "client": {
+        "firstname": "string",
+        "lastname": "string",
+        "status": "number",
+        "balance": "number"
+    },
+    "partner": {
+        "name": "string",
+        "partner_status": "number",
+        "country_nice_name": "string",
+        "balance": "number"
+    }
+}</code></pre>
+      </div>
+
+      <h3>Description des champs</h3>
+
+      <h4>Objet <code>client</code></h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Champ</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>firstname</code></td>
+            <td>string</td>
+            <td>Prénom du client</td>
+          </tr>
+          <tr>
+            <td><code>lastname</code></td>
+            <td>string</td>
+            <td>Nom de famille du client</td>
+          </tr>
+          <tr>
+            <td><code>status</code></td>
+            <td>number</td>
+            <td>Statut du client (2 = actif)</td>
+          </tr>
+          <tr>
+            <td><code>balance</code></td>
+            <td>number</td>
+            <td>Solde du compte client</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Objet <code>partner</code></h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Champ</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>name</code></td>
+            <td>string</td>
+            <td>Nom du partenaire</td>
+          </tr>
+          <tr>
+            <td><code>partner_status</code></td>
+            <td>number</td>
+            <td>Statut du partenaire (2 = actif)</td>
+          </tr>
+          <tr>
+            <td><code>country_nice_name</code></td>
+            <td>string</td>
+            <td>Nom du pays</td>
+          </tr>
+          <tr>
+            <td><code>balance</code></td>
+            <td>number</td>
+            <td>Solde du compte partenaire</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Exemple de réponse</h3>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><code>{
+    "client": {
+        "firstname": "Jean",
+        "lastname": "Dupont",
+        "status": 2,
+        "balance": 50000
+    },
+    "partner": {
+        "name": "Partenaire Test",
+        "partner_status": 2,
+        "country_nice_name": "Bénin",
+        "balance": 125000
+    }
+}</code></pre>
+      </div>
+
+      <h2>Fonctionnalité RcTransaction</h2>
+
+      <p>
+        Le code utilise également une fonction <code>RcTransaction</code> pour
+        gérer les transactions.
+      </p>
+
+      <h3>Paramètres RcTransaction</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Paramètre</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>transactionKey</code></td>
+            <td>string</td>
+            <td>Clé de transaction</td>
+          </tr>
+          <tr>
+            <td><code>transactionPassword</code></td>
+            <td>string</td>
+            <td>Mot de passe de transaction</td>
+          </tr>
+          <tr>
+            <td><code>action</code></td>
+            <td>string</td>
+            <td>Action à effectuer ("+" pour dépôt, "-" pour retrait)</td>
+          </tr>
+          <tr>
+            <td><code>webhook</code></td>
+            <td>string</td>
+            <td>URL de callback</td>
+          </tr>
+          <tr>
+            <td><code>ptner_transaction_id</code></td>
+            <td>number</td>
+            <td>ID de transaction partenaire (généré aléatoirement)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Exemple d'utilisation</h3>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><code>RcTransaction({
+    transactionKey: "186339491a3fc16e",
+    transactionPassword: "03206b53ebf67688",
+    action: "+", // ou "-"
+    webhook: "https://rechcompt.com",
+    ptner_transaction_id: Math.floor(Math.random() * 1000000000)
+})</code></pre>
+      </div>
+
+      <h2>Gestion des erreurs</h2>
+
+      <p>Le code vérifie le statut de la réponse :</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><code>if(response?.status === 200) {
+    // Traitement des données
+}</code></pre>
+      </div>
+
+      <div class="alert alert-warning">
+        Pour une gestion d'erreurs complète, il est recommandé d'ajouter un bloc
+        <code>.catch()</code> à la promesse axios.
+      </div>
+
+      <h2>Notes importantes</h2>
+
+      <ul>
+        <li>
+          Les clés d'authentification sont en dur dans le code - en production,
+          elles devraient être sécurisées
+        </li>
+        <li>
+          L'affichage des soldes utilise le format "montant + ' F'" (Franc CFA)
+        </li>
+        <li>Les statuts actifs correspondent à la valeur <code>2</code></li>
+        <li>
+          Le code génère des IDs de transaction aléatoirement pour les
+          opérations
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      function copyCode(button) {
+        const codeContainer = button.parentElement;
+        const pre = codeContainer.querySelector("pre");
+        const code = pre.textContent;
+
+        navigator.clipboard.writeText(code).then(() => {
+          const originalText = button.textContent;
+          button.textContent = "Copié!";
+          button.style.background = "#1f883d";
+          button.style.color = "white";
+
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = "#f6f8fa";
+            button.style.color = "#656d76";
+          }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>
