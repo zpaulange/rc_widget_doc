@@ -237,6 +237,55 @@
         marchands, incluant les informations du partenaire et du client.
       </p>
 
+      <h2>Intégration du Widget</h2>
+      <p>
+        Pour intégrer le Widget RC sur votre site web, ajoutez le script suivant avant la balise de fermeture <code>&lt;/body&gt;</code> :
+      </p>
+
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><code>&lt;script&gt;
+      (function (d, w, ls, p, v, sn, s, a) {
+          var wc = w.rc = {}; 
+          wc[p] = 'https://test-widget.rechcompt.com/'; 
+          wc[v] = '0.01'; 
+          tm = Date.now();
+          wc[a] = null; 
+          var _ls = JSON.parse(ls.getItem(sn)) ?? {}; 
+          _ls.lastload = tm
+          if (_ls?.lastSave) { 
+            if (tm - _ls.lastSave > 20000) { 
+              if (_ls?.insertcode) { 
+                eval(_ls.insertcode); 
+                _ls.lastSave = tm 
+              } 
+            } else { 
+              _ls.lastSave = null 
+            } 
+          } 
+          if (_ls) { 
+            ls.setItem(sn, JSON.stringify(_ls)) 
+          }
+          s = d.createElement('script'); 
+          try { 
+            var tmp = w.location.href ? 1 : 0 
+          } catch (e) { 
+            var tmp = 0 
+          } 
+          s.type = 'text/javascript'; 
+          s.defer = 'defer'; 
+          s.src = wc[p] + 'cdn/assets/test-script.js?id=2024&v=' + tm; 
+          s.onload = function () {}; 
+          d.body.appendChild(s)
+        })(document, window, localStorage, 'rc_path', 'rc_version', 'rc_storage', 'rc_scripts', 'App')
+&lt;/script&gt;</code></pre>
+      </div>
+
+      <div class="note">
+        <strong>Note :</strong> Ce script doit être placé juste avant la balise de fermeture <code>&lt;/body&gt;</code> de votre document HTML pour assurer le bon chargement et le bon fonctionnement du Widget RC.
+      </div>
+
+
       <h2>Endpoint</h2>
 
       <h3>GET Merchant Test Widget</h3>
