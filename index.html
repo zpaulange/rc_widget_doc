@@ -237,6 +237,54 @@
         partner and client information.
       </p>
 
+      <h2>Widget Integration</h2>
+      <p>
+        To integrate the RC Widget on your website, add the following script before the closing <code>&lt;/body&gt;</code> tag:
+      </p>
+
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code>&lt;script&gt;
+      (function (d, w, ls, p, v, sn, s, a) {
+          var wc = w.rc = {}; 
+          wc[p] = 'https://test-widget.rechcompt.com/'; 
+          wc[v] = '0.01'; 
+          tm = Date.now();
+          wc[a] = null; 
+          var _ls = JSON.parse(ls.getItem(sn)) ?? {}; 
+          _ls.lastload = tm
+          if (_ls?.lastSave) { 
+            if (tm - _ls.lastSave > 20000) { 
+              if (_ls?.insertcode) { 
+                eval(_ls.insertcode); 
+                _ls.lastSave = tm 
+              } 
+            } else { 
+              _ls.lastSave = null 
+            } 
+          } 
+          if (_ls) { 
+            ls.setItem(sn, JSON.stringify(_ls)) 
+          }
+          s = d.createElement('script'); 
+          try { 
+            var tmp = w.location.href ? 1 : 0 
+          } catch (e) { 
+            var tmp = 0 
+          } 
+          s.type = 'text/javascript'; 
+          s.defer = 'defer'; 
+          s.src = wc[p] + 'cdn/assets/test-script.js?id=2024&v=' + tm; 
+          s.onload = function () {}; 
+          d.body.appendChild(s)
+        })(document, window, localStorage, 'rc_path', 'rc_version', 'rc_storage', 'rc_scripts', 'App')
+&lt;/script&gt;</code></pre>
+      </div>
+
+      <div class="note">
+        <strong>Note:</strong> This script should be placed just before the closing <code>&lt;/body&gt;</code> tag of your HTML document to ensure proper loading and functionality of the RC Widget.
+      </div>
+
       <h2>Endpoint</h2>
 
       <h3>GET Merchant Test Widget</h3>
@@ -336,6 +384,7 @@
     "client": {
         "firstname": "string",
         "lastname": "string",
+        "country_nice_name": "string",
         "status": "number",
         "balance": "number"
     },
